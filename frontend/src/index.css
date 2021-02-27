@@ -1,0 +1,66 @@
+::selection {
+  background-color: #111827;
+  color: #f9fafb;
+}
+
+.comments::-webkit-scrollbar {
+  width: 0.2em;
+}
+.comments::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+}
+.comments::-webkit-scrollbar-thumb {
+  background-color: #374151;
+  outline: 1px solid #f9fafb;
+}
+
+body {
+  direction: rtl;
+}
+
+textarea {
+  min-width: 100%;
+  max-width: 100%;
+  min-height: 200px;
+  max-height: 200px;
+}
+
+.cover::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+.cover {
+  background: url(bg.jpg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.text-typing {
+  white-space: nowrap;
+  overflow: hidden;
+  transition: all ease-in-out;
+  animation: typing 5s steps(22, end) forwards;
+}
+
+.points::after {
+  content: "...";
+  position: absolute;
+  left: -50%;
+  bottom: 0;
+}
+
+@keyframes typing {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 100%;
+  }
+}
