@@ -3,7 +3,7 @@ import React from "react";
 import Article from "../components/Home/Article";
 import Articles from "../components/Home/Articles";
 import Navs from "../components/Home/Navs";
-import Pagination from "../components/Pagination";
+import Pagination from "../components/Pagination/Pagination";
 const HomeScreen = () => {
   return (
     <>

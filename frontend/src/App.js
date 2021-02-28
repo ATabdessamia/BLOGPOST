@@ -12,7 +12,9 @@ import WelcomeScreen from "./screens/WelcomeScreen";
 const App = () => {
   return (
     <>
-      <WelcomeScreen />
+      {" "}
+      <HomeScreen />
+      {/* <WelcomeScreen /> */}
       {/* <Header />
       <HomeScreen />
       <PostScreen />

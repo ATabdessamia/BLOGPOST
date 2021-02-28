@@ -1,8 +1,18 @@
+/*Global style*/
 ::selection {
   background-color: #111827;
   color: #f9fafb;
 }
-
+body {
+  direction: rtl;
+}
+textarea {
+  min-width: 100%;
+  max-width: 100%;
+  min-height: 200px;
+  max-height: 200px;
+}
+/*Post page style*/
 .comments::-webkit-scrollbar {
   width: 0.2em;
 }
@@ -14,17 +24,7 @@
   outline: 1px solid #f9fafb;
 }
 
-body {
-  direction: rtl;
-}
-
-textarea {
-  min-width: 100%;
-  max-width: 100%;
-  min-height: 200px;
-  max-height: 200px;
-}
-
+/*Welcome page style*/
 .cover::before {
   content: "";
   position: absolute;
@@ -41,21 +41,12 @@ textarea {
   -o-background-size: cover;
   background-size: cover;
 }
-
 .text-typing {
   white-space: nowrap;
   overflow: hidden;
   transition: all ease-in-out;
   animation: typing 5s steps(22, end) forwards;
 }
-
-.points::after {
-  content: "...";
-  position: absolute;
-  left: -50%;
-  bottom: 0;
-}
-
 @keyframes typing {
   0% {
     width: 0%;
@@ -63,4 +54,12 @@ textarea {
   100% {
     width: 100%;
   }
+}
+
+/* Pagination style */
+.points::after {
+  content: "...";
+  position: absolute;
+  margin: 0 15px;
+  bottom: 8%;
 }

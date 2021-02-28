@@ -1,6 +1,6 @@
 import React from "react";
 
-import Pagination from "../components/Pagination";
+import Pagination from "../components/Pagination/Pagination";
 import Card from "../components/Profile/Card";
 import Cards from "../components/Profile/Cards";
 import Avatar from "../components/Profile/Avatar";
