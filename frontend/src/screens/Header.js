@@ -6,6 +6,7 @@ import NavItem from "../components/Header/NavItem";
 import NavLink from "../components/Header/NavLink";
 import NavBurger from "../components/Header/NavBurger";
 import NavAvatar from "../components/Header/NavAvatar";
+
 const Header = () => {
   const [burger, setBurger] = useState(true);
   const [avatar, setAvatar] = useState(true);

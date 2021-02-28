@@ -3,6 +3,7 @@ import AuthBtn from "../components/Auth/AuthBtn";
 import HalfInput from "../components/Auth/HalfInput";
 
 import InputField from "../components/Auth/InputField";
+
 const SingnUp = () => {
   return (
     <div className="min-h-screen flex flex-col items-center justify-center">

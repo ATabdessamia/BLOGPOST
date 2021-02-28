@@ -1,5 +1,6 @@
 import React from "react";
-import Review from "./Review";
+
+import Star from "./Star";
 
 const Details = () => {
   return (
@@ -22,7 +23,7 @@ const Details = () => {
           </a>
         </span>
       </div>
-      <Review />
+      <Star />
     </div>
   );
 };

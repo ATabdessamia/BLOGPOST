@@ -4,6 +4,7 @@ import AuthBtn from "../components/Auth/AuthBtn";
 import GoogleAuth from "../components/Auth/GoogleAuth";
 import InputField from "../components/Auth/InputField";
 import QuestionLink from "../components/Auth/QuestionLink";
+
 const SignIn = () => {
   return (
     <div className="min-h-screen flex flex-col items-center justify-center">
