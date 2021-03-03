@@ -1,5 +1,9 @@
 import express from "express";
 import dotenv from "dotenv";
+import cookie from "cookie-parser";
+import cors from "cors";
+import bodyParser from "body-parser";
+import morgan from "morgan";
 
 import globalErrorsHandler from "./controllers/ErrorController.js";
 import connection from "./utilits/DataBase.js";
@@ -20,12 +24,17 @@ connection();
 
 const app = express();
 
-// Router
-app.use("/", (req, res) => {
-  res.send("blogpost api");
-});
+if (process.env.NODE_ENV === "development") {
+  app.use(morgan("dev"));
+}
+
+app.use(bodyParser.json({ limit: "30mb", extended: true }));
+app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
+app.use(cors());
+app.use(cookie());
+
 app.use("/posts", postRoutes);
-app.use("/user", userRoutes);
+app.use("/auths", userRoutes);
 
 // HanderlErrors for routes
 app.all("*", (req, res, next) => {

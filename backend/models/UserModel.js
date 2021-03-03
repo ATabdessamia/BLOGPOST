@@ -29,7 +29,7 @@ const userSchema = new mongoose.Schema({
     minlength: 8,
     select: false,
   },
-  passwordConfirm: {
+  confirmPassword: {
     type: String,
     required: [true, "الرجاء تأكيد كلمة المرور"],
     validate: {
@@ -52,7 +52,7 @@ userSchema.pre("save", async function (next) {
   this.password = await bcrypt.hash(this.password, 12);
 
   // dont add it in database
-  this.passwordConfirm = undefined;
+  this.confirmPassword = undefined;
 
   next();
 });

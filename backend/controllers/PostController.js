@@ -27,8 +27,6 @@ const upload = multer({
   fileFilter: multerFilter,
 });
 
-// upload.single('image') req.file
-// upload.array('images', 5) req.files
 export const uploadPostImages = upload.single("cover");
 
 export const resizePostImages = catchAsync(async (req, res, next) => {

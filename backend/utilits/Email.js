@@ -5,7 +5,7 @@ export default class Email {
     this.to = user.email;
     this.firstName = user.firstName;
     this.url = url;
-    this.form = `<${process.env.EMAIL_FROM}> فريق موقع التاريخ الاسلامي`;
+    this.from = process.env.EMAIL_FROM;
   }
 
   newTransport() {
@@ -20,8 +20,8 @@ export default class Email {
 
   async send(subject) {
     const html = `
-    <h1>${this.firstName}</h1>
-    <h2>${subject}</h2>
+    <h1>فريق موقع التاريخ الاسلامي</h1>
+    <h1>${subject} ${this.firstName}</h1>
     <a href=${this.url}><bold>إعادة كلمة السر</bold></a>`;
 
     const mailOptions = {
@@ -32,10 +32,6 @@ export default class Email {
     };
 
     await this.newTransport().sendMail(mailOptions);
-  }
-
-  async sendWelcome() {
-    await this.send("مرحبا", "مرحبا بكم في عائلة التاريخ الاسلامي");
   }
 
   async sendPasswordReset() {

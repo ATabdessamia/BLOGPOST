@@ -39,7 +39,7 @@ const postSchema = mongoose.Schema({
     required: true,
     default: 0,
   },
-  creator: {
+  author: {
     type: mongoose.Schema.Types.ObjectId,
     required: true,
     ref: "User",

@@ -1,6 +1,6 @@
 import React from "react";
-import AuthBtn from "../components/Auth/AuthBtn";
 
+import AuthBtn from "../components/Auth/AuthBtn";
 import GoogleAuth from "../components/Auth/GoogleAuth";
 import InputField from "../components/Auth/InputField";
 import QuestionLink from "../components/Auth/QuestionLink";

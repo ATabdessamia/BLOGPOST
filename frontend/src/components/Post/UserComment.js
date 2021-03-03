@@ -1,19 +1,20 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const UserComment = () => {
   return (
     <div className="flex items-start py-4 hover:bg-gray-100">
-      <a href="#/">
+      <Link to="/profile">
         <img src="/images/avatar.svg" alt="avatar" className="w-12 h-12" />
-      </a>
+      </Link>
       <div className="px-5">
         <div className="inline-flex items-center mb-2 -mr-2">
-          <a
-            href="#/"
+          <Link
+            to="/profile"
             className="text-gray-700 font-black text-lg font-kufi ml-2"
           >
             اسم المعلق
-          </a>
+          </Link>
           <span className="text-gray-500 text-sm">علق قبل 5 دقائق</span>
         </div>
         <div className="text-base text-gray-700">

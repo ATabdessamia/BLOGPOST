@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 import Star from "./Star";
 
@@ -14,13 +15,14 @@ const Details = () => {
       <div className="mt-1">
         <span className="inline text-gray-900">
           المؤلف
-          <a
+          <Link
+            to="/profile"
             href="#/"
             className="cursor-pointer text-gray-500 hover:text-gray-900"
           >
             {" "}
             اسم المؤلف{" "}
-          </a>
+          </Link>
         </span>
       </div>
       <Star />

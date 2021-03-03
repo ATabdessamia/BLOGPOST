@@ -46,16 +46,13 @@ export const signup = catchAsync(async (req, res, next) => {
     lastName: req.body.lastName,
     email: req.body.email,
     password: req.body.password,
-    passwordConfirm: req.body.passwordConfirm,
+    confirmPassword: req.body.confirmPassword,
   });
-
-  const url = `${req.protocol}://${req.get("host")}/me`;
-  await new Email(newUser, url).sendWelcome();
 
   createSendToken(newUser, 201, res);
 });
 
-export const login = catchAsync(async (req, res, next) => {
+export const signin = catchAsync(async (req, res, next) => {
   const { email, password } = req.body;
 
   // check if exist
@@ -74,13 +71,13 @@ export const login = catchAsync(async (req, res, next) => {
   createSendToken(user, 200, res);
 });
 
-export const logOut = (req, res) => {
+export const logout = (req, res) => {
   //cookies
   const cookieOptions = {
     expires: new Date(Date.now() + 10 * 1000),
     httpOnly: true,
   };
-  res.cookie("jwt", "loggOut", cookieOptions);
+  res.cookie("jwt", "logout", cookieOptions);
   res.status(200).json({
     status: "success",
   });
@@ -130,6 +127,29 @@ export const protect = catchAsync(async (req, res, next) => {
   next();
 });
 
+export const isLoggedIn = async (req, res, next) => {
+  if (req.cookies.jwt) {
+    try {
+      const decoded = await promisify(jwt.verify)(
+        req.cookies.jwt,
+        process.env.JWT_SECRET
+      );
+
+      const currentAdmin = await Admin.findById(decoded.id);
+
+      if (!currentAdmin) {
+        return next();
+      }
+
+      res.locals.admin = currentAdmin;
+      return next();
+    } catch (err) {
+      return next();
+    }
+  }
+  next();
+};
+
 export const forgotPassword = catchAsync(async (req, res, next) => {
   //get user based on posted email
   const user = await User.findOne({ email: req.body.email });
@@ -144,8 +164,8 @@ export const forgotPassword = catchAsync(async (req, res, next) => {
   try {
     // sned it to user email
     const resetURL = `${req.protocol}://${req.get(
-      "host"
-    )}/user/resetPassword/${resetToken}`;
+      "http://localhost:3000"
+    )}/resetPassword/${resetToken}`;
     await new Email(user, resetURL).sendPasswordReset();
 
     res.status(200).json({
@@ -186,7 +206,7 @@ export const resetPassword = catchAsync(async (req, res, next) => {
   }
 
   user.password = req.body.password;
-  user.passwordConfirm = req.body.passwordConfirm;
+  user.confirmPassword = req.body.confirmPassword;
   user.passwordResetToken = undefined;
   user.passwordResetExpires = undefined;
   await user.save();
@@ -205,7 +225,7 @@ export const updatePassword = catchAsync(async (req, res, next) => {
   }
 
   user.password = req.body.password;
-  user.passwordConfirm = req.body.passwordConfirm;
+  user.confirmPassword = req.body.confirmPassword;
   await user.save();
 
   //log in and send jwt

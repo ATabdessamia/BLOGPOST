@@ -1,7 +1,8 @@
 import React from "react";
+import { Link } from "react-router-dom";
+
 import AuthBtn from "../components/Auth/AuthBtn";
 import HalfInput from "../components/Auth/HalfInput";
-
 import InputField from "../components/Auth/InputField";
 
 const SingnUp = () => {
@@ -12,7 +13,21 @@ const SingnUp = () => {
           إنشاء حساب جديد
         </div>
         <div className="mt-10">
-          <form>
+          <Link to="/home" className="text-blue-900 hover:text-opacity-70">
+            <svg
+              class="w-6 h-6"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z"
+                clip-rule="evenodd"
+              ></path>
+            </svg>
+          </Link>
+          <form className="mt-5">
             <div className="flex -mx-3">
               <HalfInput label="الاسم الأول" id="firstName" />
               <HalfInput label="اسم العائلة" id="lastName" />
@@ -36,7 +51,7 @@ const SingnUp = () => {
             <InputField
               label="تأكيد كلمة المرور"
               svg="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
-              id="confirmpassword"
+              id="confirmPassword"
               type="password"
               min="20"
               max="128"

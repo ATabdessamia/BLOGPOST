@@ -9,15 +9,14 @@ import {
   uploadPostImages,
   resizePostImages,
 } from "../controllers/PostController.js";
-import { protect } from "../controllers/AuthController.js";
 
 const postRouter = express.Router();
 
-postRouter.route("/").get(getAllPosts).post(protect, createNewPost);
+postRouter.route("/").get(getAllPosts).post(createNewPost);
 postRouter
   .route("/:id")
   .get(getPost)
-  .patch(protect, uploadPostImages, resizePostImages, updatePost)
-  .delete(protect, deletePost);
+  .patch(uploadPostImages, resizePostImages, updatePost)
+  .delete(deletePost);
 
 export default postRouter;

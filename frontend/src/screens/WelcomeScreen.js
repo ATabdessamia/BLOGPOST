@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const WelcomeScreen = () => {
   return (
@@ -12,10 +13,11 @@ const WelcomeScreen = () => {
             احجز مقعدك واخبرنا عن مجد اجدادنا
           </p>
         </div>
-
-        <button className="bg-gray-200 opacity-70 float-left py-2 px-4 rounded text-xl font-thin shadow-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-gray-200 transition-transform duration-300 ease-in-out transform hover:scale-105 hover:opacity-100">
-          ابدإ الرحلة
-        </button>
+        <Link to="/home">
+          <button className="bg-gray-200 opacity-70 float-left py-2 px-4 rounded text-xl font-thin shadow-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-gray-200 transition-transform duration-300 ease-in-out transform hover:scale-105 hover:opacity-100">
+            ابدإ الرحلة
+          </button>
+        </Link>
       </div>
     </main>
   );

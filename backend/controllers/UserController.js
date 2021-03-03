@@ -4,12 +4,7 @@ import sharp from "sharp";
 import AppError from "../utilits/AppErrors.js";
 import User from "../models/UserModel.js";
 import catchAsync from "../utilits/CatchAsync.js";
-import {
-  deleteHand,
-  updateHand,
-  getAllHand,
-  getHand,
-} from "./HandlerController.js";
+import { getHand } from "./HandlerController.js";
 
 const multerStorage = multer.memoryStorage();
 
@@ -58,13 +53,6 @@ export const getMe = (req, res, next) => {
   next();
 };
 
-export const createNewUser = (req, res) => {
-  res.status(500).json({
-    status: "error",
-    message: "هذا الطريق غير محدد! يرجى استخدام /signup",
-  });
-};
-
 //updating current user
 export const updateMe = catchAsync(async (req, res, next) => {
   // if user post a password or passwordConfirm
@@ -94,19 +82,5 @@ export const updateMe = catchAsync(async (req, res, next) => {
   });
 });
 
-//delete current user
-export const deleteMe = catchAsync(async (req, res, next) => {
-  await User.findByIdAndUpdate(req.user.id, { active: false });
-
-  res.status(204).json({
-    status: "success",
-    data: null,
-  });
-});
-
 //fetching specfic data
 export const getUser = getHand(User);
-//update data
-export const updateUser = updateHand(User);
-// deleting data
-export const deleteUser = deleteHand(User);

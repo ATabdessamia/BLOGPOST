@@ -1,13 +1,13 @@
 import React from "react";
 
-const SaveBtn = ({ text }) => {
+const SaveBtn = () => {
   return (
-    <div className="flex w-full">
+    <div className="flex w-full pb-5">
       <button
         type="submit"
-        className="flex items-center justify-center focus:outline-none text-white text-base sm:text-lg bg-gray-700 hover:opacity-80 rounded py-2 w-full focus:ring-2 focus:ring-inset focus:ring-gray-100 transition-transform duration-300 ease-in-out transform hover:scale-105"
+        className="flex items-center justify-center focus:outline-none text-gray-900 text-base sm:text-lg bg-gray-100 hover:bg-gray-200 rounded py-2 w-full focus:ring-2 focus:ring-inset focus:ring-gray-100 transition-transform duration-300 ease-in-out transform hover:scale-105"
       >
-        <span className="mr-2">{text}</span>
+        <span className="mr-2">حفظ</span>
         <span>
           <svg
             className="w-6 h-6"

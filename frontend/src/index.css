@@ -63,3 +63,22 @@ textarea {
   margin: 0 15px;
   bottom: 8%;
 }
+
+/* Modal */
+.underlinee::after {
+  content: "";
+  position: absolute;
+  height: 10px;
+  width: 120px;
+  left: 50%;
+  transform: translateX(-50%);
+  margin: 2.5rem auto;
+  background: #e5e7eb;
+}
+.bgScreen {
+  background: url(bgModal.svg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
