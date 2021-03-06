@@ -1,6 +1,6 @@
 import React from "react";
 
-const HalfInput = ({ label, id }) => {
+const HalfInput = ({ label, id, value, onChange }) => {
   return (
     <div className="w-1/2 px-3 mb-5">
       <label htmlFor={id} className="mb-1 text-sm sm:text-base text-gray-600">
@@ -26,6 +26,8 @@ const HalfInput = ({ label, id }) => {
         <input
           id={id}
           name={id}
+          value={value}
+          onChange={onChange}
           type="text"
           className="w-full -mr-10 pr-10 pl-3 py-2 rounded-lg border-2 border-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-300 text-gray-700"
           placeholder="هارون"

@@ -66,7 +66,7 @@ export const getAllHand = (Model) =>
     });
   });
 
-export const getHand = (model) =>
+export const getHand = (Model) =>
   catchAsync(async (req, res, next) => {
     let query = Model.findById(req.params.id);
     const doc = await query;

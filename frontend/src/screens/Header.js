@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 import Nav from "../components/Header/Nav";
 import NavBrand from "../components/Header/NavBrand";
@@ -6,10 +7,17 @@ import NavItem from "../components/Header/NavItem";
 import NavLink from "../components/Header/NavLink";
 import NavBurger from "../components/Header/NavBurger";
 import NavAvatar from "../components/Header/NavAvatar";
+import { getme } from "../actions/AuthActions";
 
 const Header = () => {
+  const dispatch = useDispatch();
+  const { auth } = useSelector((state) => state.auth);
   const [burger, setBurger] = useState(true);
   const [avatar, setAvatar] = useState(true);
+
+  useEffect(() => {
+    dispatch(getme());
+  }, [dispatch]);
 
   const onBurgerHandeler = () => {
     setBurger(!burger);

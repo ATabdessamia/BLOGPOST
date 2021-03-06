@@ -25,7 +25,6 @@ const createSendToken = (user, statusCode, res) => {
   if (process.env.NODE_ENV === "production") cookieOptions.secure = true;
 
   res.cookie("jwt", token, cookieOptions);
-
   // Remove password from output
   user.password = undefined;
 
@@ -48,7 +47,6 @@ export const signup = catchAsync(async (req, res, next) => {
     password: req.body.password,
     confirmPassword: req.body.confirmPassword,
   });
-
   createSendToken(newUser, 201, res);
 });
 
@@ -135,13 +133,13 @@ export const isLoggedIn = async (req, res, next) => {
         process.env.JWT_SECRET
       );
 
-      const currentAdmin = await Admin.findById(decoded.id);
+      const currentUser = await User.findById(decoded.id);
 
-      if (!currentAdmin) {
+      if (!currentUser) {
         return next();
       }
 
-      res.locals.admin = currentAdmin;
+      res.locals.user = currentUser;
       return next();
     } catch (err) {
       return next();

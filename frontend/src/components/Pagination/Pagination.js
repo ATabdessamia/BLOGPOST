@@ -80,7 +80,6 @@ const Pagination = () => {
         </ArrowButton>
         <div className="flex flex-row-reverse items-center text-lg font-black">
           {btnList.map((b, i) => {
-            console.log(activeIndex, i);
             return i === points ? (
               <NumButton
                 onClick={() => onActiveClick(i)}

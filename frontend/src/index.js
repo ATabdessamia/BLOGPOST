@@ -7,19 +7,19 @@ import thunk from "redux-thunk";
 
 import "./index.css";
 import "./tailwind.css";
-// import reducers from "./reducers";
+import reducers from "./reducers";
 import App from "./App";
 
-// const middleware = [thunk];
+const middleware = [thunk];
 
-// const store = createStore(
-//   reducers,
-//   composeWithDevTools(applyMiddleware(...middleware))
-// );
-// Provider store={store}
+const store = createStore(
+  reducers,
+  composeWithDevTools(applyMiddleware(...middleware))
+);
+
 ReactDOM.render(
-  <>
+  <Provider store={store}>
     <App />
-  </>,
+  </Provider>,
   document.getElementById("root")
 );
