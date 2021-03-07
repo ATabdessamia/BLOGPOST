@@ -11,7 +11,9 @@ const handelDuplicateFieldDB = (err) => {
   // eslint-disable-next-line prefer-destructuring
   const value = err.errmsg.match(/(["'])(?:\\.|[^\\])*?\1/)[0];
 
-  const msg = `!الرجاء استخدام قيمة أخرى,${value}:قيمة الحقل المكررة`;
+  const msg = `!الرجاء استخدام قيمة أخرى,
+    قيمة الحقل المكررة:${value}
+  `;
   return new AppError(msg, 400);
 };
 

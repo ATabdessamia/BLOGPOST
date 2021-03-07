@@ -38,20 +38,21 @@ const Pagination = () => {
   useEffect(() => {
     onActiveClick(0);
   }, []);
+
   const btnList = [
     "a",
     "b",
     "c",
-    "c",
-    "c",
-    "b",
-    "b",
-    "c",
-    "c",
-    "c",
-    "b",
-    "b",
-    "c",
+    "d",
+    "e",
+    "f",
+    "g",
+    "h",
+    "j",
+    "k",
+    "r",
+    "l",
+    "m",
   ];
 
   const points = Math.floor(btnList.length / 2);

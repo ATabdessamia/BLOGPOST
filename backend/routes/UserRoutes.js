@@ -31,9 +31,9 @@ userRouter.route("/resetPassword/:token").patch(resetPassword);
 userRouter.use(isLoggedIn);
 userRouter.use(protect);
 
-userRouter.route("/:id").get(getUser);
 userRouter.route("/updatePassword").patch(updatePassword);
 userRouter.route("/me").get(getMe, getUser);
 userRouter.route("/updateMe").patch(uploadUserPhoto, resizeUserPhoto, updateMe);
+userRouter.route("/:id").get(getUser);
 
 export default userRouter;

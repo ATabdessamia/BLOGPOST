@@ -1,5 +1,5 @@
 /* eslint-disable import/no-anonymous-default-export */
-import { ERROR, LOADING, SUCCESS } from "../constants/index";
+import { ERROR, LOADING, SUCCESS, LOGOUT } from "../constants/index";
 
 export default (state = { auth: null }, action) => {
   switch (action.type) {
@@ -21,6 +21,8 @@ export default (state = { auth: null }, action) => {
         error: true,
         auth: action.payload,
       };
+    case LOGOUT:
+      return action.payload;
     default:
       return state;
   }

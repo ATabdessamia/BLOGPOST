@@ -1,5 +1,5 @@
 import * as api from "../api/AuthApi";
-import { ERROR, LOADING, SUCCESS } from "../constants/index";
+import { ERROR, LOADING, SUCCESS, LOGOUT } from "../constants/index";
 
 export const signup = (formData, history) => async (dispatch) => {
   try {
@@ -39,10 +39,8 @@ export const signin = (formData, history) => async (dispatch) => {
 
 export const logout = (history) => async (dispatch) => {
   try {
-    dispatch({ type: LOADING });
     const { data } = await api.logOut();
-
-    dispatch({ type: SUCCESS, payload: data });
+    dispatch({ type: LOGOUT, payload: data });
     history.push("/");
   } catch (error) {
     dispatch({ type: ERROR, payload: "Somthing goes wrong, Try again!" });
