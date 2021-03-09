@@ -27,7 +27,7 @@ const InputField = ({ label, id, type, max, min, onChange, value }) => {
           name={id}
           value={value}
           onChange={onChange}
-          className="text-base sm:text-lg bg-gray-900 text-gray-200 pr-10 pl-4 rounded-lg border-2 border-gray-200 w-full py-2 focus:outline-none focus:ring-2 focus:ring-gray-300"
+          className="text-base sm:text-lg bg-gray-900 text-gray-200 pr-10 pl-4 rounded-lg border-2 border-gray-200 w-full py-2 focus:outline-none focus:ring-2 focus:ring-gray-300 font-extrabold"
           placeholder={label}
           required
           maxLength={max}

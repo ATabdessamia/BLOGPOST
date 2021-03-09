@@ -39,7 +39,16 @@ const SingnUp = () => {
     <>
       {loading && <Loading />}
       {error && <Alert err={auth} />}
-      <div className="min-h-screen flex flex-col items-center justify-center">
+      <div className="min-h-screen flex flex-row items-center justify-center">
+        <div className="hidden sm:block">
+          <img
+            src="images/undraw_join_of2w.svg"
+            className="block"
+            alt="تسجيل الدخول"
+            width="800"
+            height="800"
+          />
+        </div>
         <div className="flex flex-col bg-gray-100 shadow-md px-4 sm:px-6 md:px-8 lg:px-10 py-8 rounded-md w-full max-w-md">
           <div className="font-medium self-center text-xl sm:text-2xl text-gray-700 font-kufi">
             إنشاء حساب جديد

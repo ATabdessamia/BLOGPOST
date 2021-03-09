@@ -61,33 +61,43 @@ const Header = () => {
           </div>
         </NavItem>
         <NavItem>
-          {isLoggedIn ? (
-            <div>
-              <NavAvatar onClick={onAvatarHandeler} to="#" />
-              <div
-                className={`origin-top-right absolute left-20 w-48 rounded-md shadow-lg py-1 bg-gray-100 ring-1 ring-black ring-opacity-5 ${avatarHidden}`}
-              >
-                <NavLink to="/profile" text="صفحتي الشخصية" />
-                <NavLink to="/settings" text="التعديلات" />
-                <NavLink
-                  to="/"
-                  text="تسجيل الخروج"
-                  onClick={() => dispatch(logout(history))}
-                />
-              </div>
-            </div>
-          ) : (
-            <div>
-              <NavAvatar
-                to="/signin"
-                className="bg-gray-700 py-1 px-2 text-lg rounded focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white hover:bg-gray-600 text-gray-50 transition-transform duration-300 ease-in-out transform hover:scale-105"
-                text="تسجيل الدخول"
+          <div
+            className={`${
+              isLoggedIn
+                ? `transition ease-out duration-100 transform scale-100`
+                : `transition ease-out duration-100 transform hidden scale-95`
+            }`}
+          >
+            <NavAvatar onClick={onAvatarHandeler} to="#" />
+            <div
+              className={`origin-top-right absolute left-20 w-48 rounded-md shadow-lg py-1 bg-gray-100 ring-1 ring-black ring-opacity-5 ${avatarHidden}`}
+            >
+              <NavLink to="/profile" text="صفحتي الشخصية" />
+              <NavLink to="/settings" text="التعديلات" />
+              <NavLink
+                to="/"
+                text="تسجيل الخروج"
+                onClick={() => dispatch(logout(history))}
               />
             </div>
-          )}
+          </div>
+
+          <div
+            className={
+              isLoggedIn
+                ? `transition ease-out duration-100 transform hidden scale-95`
+                : `transition ease-out duration-100 transform scale-100`
+            }
+          >
+            <NavAvatar
+              to="/signin"
+              className="bg-gray-700 py-1 px-2 text-lg rounded focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white hover:bg-gray-600 text-gray-50 transition-transform duration-300 ease-in-out transform hover:scale-105"
+              text="تسجيل الدخول"
+            />
+          </div>
         </NavItem>
       </Nav>
-      <Nav className={`mt-6 ${burgerHidden}   md:hidden`}>
+      <Nav className={`mt-6 ${burgerHidden}  md:hidden`}>
         <NavItem className="px-2 pt-2 pb-3 space-y-1">
           <NavLink
             to="/home"
