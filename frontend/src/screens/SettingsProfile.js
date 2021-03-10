@@ -1,4 +1,5 @@
 import React from "react";
+import { useSelector } from "react-redux";
 
 import File from "../components/Auth/File";
 import HalfInput from "../components/Auth/HalfInput";
@@ -6,6 +7,10 @@ import InputField from "../components/Auth/InputField";
 import SaveBtn from "../components/Auth/SaveBtn";
 
 const SettingsProfile = () => {
+  let { auth } = useSelector((state) => state.auth);
+
+  if (!auth) return null;
+
   return (
     <div className="container mx-auto mt-10">
       <div className="sm:w-8/12 w-full mx-auto p-5 bg-gray-100 rounded-mds shadow-md">
@@ -25,7 +30,7 @@ const SettingsProfile = () => {
             min="3"
             max="320"
           />
-          <File />
+          <File auth={auth} />
           <SaveBtn text="حفظ التعديلات" />
         </form>
       </div>

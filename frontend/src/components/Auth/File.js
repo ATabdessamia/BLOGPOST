@@ -1,11 +1,12 @@
 import React from "react";
 
-const File = () => {
+const File = ({ auth }) => {
+  const { photo } = auth.data.data;
   return (
     <div className="my-6 flex">
       <div className="w-24 ml-2 bg-gray-900 rounded-full">
         <img
-          src="images/avatar.svg"
+          src={`/images/users/${photo}`}
           alt="avatar"
           className="block bg-gray-900 border-4 rounded-full border-gray-200"
         />

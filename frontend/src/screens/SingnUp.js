@@ -16,6 +16,7 @@ const initialState = {
   password: "",
   confirmPassword: "",
 };
+
 const SingnUp = () => {
   const [formData, setFormData] = useState(initialState);
   const dispatch = useDispatch();
@@ -38,11 +39,11 @@ const SingnUp = () => {
   return (
     <>
       {loading && <Loading />}
-      {error && <Alert err={auth} />}
+      {error && <Alert err={auth} color="red" />}
       <div className="min-h-screen flex flex-row items-center justify-center">
         <div className="hidden sm:block">
           <img
-            src="images/undraw_join_of2w.svg"
+            src="/images/undraw_join_of2w.svg"
             className="block"
             alt="تسجيل الدخول"
             width="800"
@@ -54,7 +55,7 @@ const SingnUp = () => {
             إنشاء حساب جديد
           </div>
           <div className="mt-10">
-            <Link to="/home" className="text-blue-900 hover:text-opacity-70">
+            <Link to="/signin" className="text-blue-900 hover:text-opacity-70">
               <svg
                 className="w-6 h-6"
                 fill="currentColor"

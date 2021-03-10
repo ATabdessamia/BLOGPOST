@@ -9,7 +9,8 @@ export const signUp = (formData) => API.post("/signup", formData);
 export const signIn = (formData) => API.post("/signin", formData);
 export const logOut = () => API.get("/logout");
 
-export const forgotPassword = (email) => API.post("/forgotPassword", email);
+export const forgotPassword = (email) =>
+  API.post("/forgotPassword", { email: email });
 export const resetPassword = (token, formData) =>
   API.patch(`/resetPassword/${token}`, formData);
 

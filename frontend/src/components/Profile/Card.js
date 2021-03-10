@@ -12,7 +12,11 @@ const Card = () => {
       className="rounded-lg shadow-lg bg-gray-100 relative overflow-hidden cursor-pointer transition-transform duration-300 ease-in-out transform hover:scale-105"
     >
       <div className="bg-gray-900">
-        <img src="images/Foggy.jpg" alt="avatar" className="block opacity-40" />
+        <img
+          src="/images/Foggy.jpg"
+          alt="avatar"
+          className="block opacity-40"
+        />
       </div>
       <Star />
       <Edite />

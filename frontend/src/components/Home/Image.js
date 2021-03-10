@@ -4,7 +4,7 @@ const Image = () => {
   return (
     <div className="flex-none rounded-lg overflow-hidden shadow-lg">
       <img
-        src="images/Foggy.jpg"
+        src="/images/Foggy.jpg"
         alt="article images"
         className="block"
         width="144"

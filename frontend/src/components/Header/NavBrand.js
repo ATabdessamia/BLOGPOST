@@ -5,7 +5,7 @@ const NavBrand = () => {
     <div className="flex justify-end items-center">
       <div>
         <img
-          src="images/brand.svg"
+          src="/images/brand.svg"
           alt="history of islam logo"
           className="block h-10 w-auto"
         />

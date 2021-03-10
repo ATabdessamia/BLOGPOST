@@ -76,7 +76,7 @@ textarea {
   background: #e5e7eb;
 }
 .bgScreen {
-  background: url(bgModal.svg) no-repeat left center fixed;
+  background: url(bgModal.svg) no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;

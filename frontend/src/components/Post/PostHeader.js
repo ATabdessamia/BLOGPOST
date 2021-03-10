@@ -11,7 +11,7 @@ const PostHeader = () => {
     <div className="flex flex-col sm:flex-row items-center">
       <div className="flex-1 w-full h-50 md:h-full bg-gradient-to-r from-green-200 via-blue-400 to-blue-500 transform scale-95 -rotate-6 rounded-lg shadow-2xl">
         <img
-          src="images/Foggy.jpg"
+          src="/images/Foggy.jpg"
           alt="article cover"
           className="block w-full shadow-lg h-40 md:h-full transform scale-95 rotate-6 rounded-lg object-cover"
         />

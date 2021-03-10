@@ -1,14 +1,9 @@
 import React from "react";
 
-import Modal from "../Modal";
-import Forgot from "../components/Modal/Forgot";
+import Forgot from "../components/Asks/Forgot";
 
 const ForgotScreen = () => {
-  return (
-    <>
-      <Modal title="طلب" form={<Forgot />} />
-    </>
-  );
+  return <Forgot title="طلب" />;
 };
 
 export default ForgotScreen;

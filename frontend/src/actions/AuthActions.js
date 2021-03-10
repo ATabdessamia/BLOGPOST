@@ -63,3 +63,38 @@ export const getme = () => async (dispatch) => {
     });
   }
 };
+
+export const forgotPwd = (email) => async (dispatch) => {
+  try {
+    dispatch({ type: LOADING });
+    const { data } = await api.forgotPassword(email);
+
+    dispatch({ type: SUCCESS, payload: data });
+  } catch (error) {
+    dispatch({
+      type: ERROR,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};
+
+export const resetPwd = (token, formData, history) => async (dispatch) => {
+  try {
+    dispatch({ type: LOADING });
+    const { data } = await api.resetPassword(token, formData);
+
+    dispatch({ type: SUCCESS, payload: data });
+    history.push("/signin");
+  } catch (error) {
+    dispatch({
+      type: ERROR,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};

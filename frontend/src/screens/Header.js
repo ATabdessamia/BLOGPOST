@@ -70,7 +70,7 @@ const Header = () => {
           >
             <NavAvatar onClick={onAvatarHandeler} to="#" />
             <div
-              className={`origin-top-right absolute left-20 w-48 rounded-md shadow-lg py-1 bg-gray-100 ring-1 ring-black ring-opacity-5 ${avatarHidden}`}
+              className={`origin-top-right absolute left-14 w-48 rounded-md shadow-lg py-1 bg-gray-100 ring-1 ring-black ring-opacity-5 ${avatarHidden}`}
             >
               <NavLink to="/profile" text="صفحتي الشخصية" />
               <NavLink to="/settings" text="التعديلات" />

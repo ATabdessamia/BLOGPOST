@@ -16,7 +16,7 @@ const NavAvatar = ({ to, text, className, onClick }) => {
             <span className="sr-only">فتح قائمة المستخدم</span>
             <img
               className="h-16 w-16 rounded-full"
-              src="images/avatar.svg"
+              src="/images/users/avatar.svg"
               alt="avatar"
             />
           </>

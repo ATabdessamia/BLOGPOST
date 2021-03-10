@@ -1,14 +1,9 @@
 import React from "react";
 
-import Modal from "../Modal";
-import Reset from "../components/Modal/Reset";
+import Reset from "../components/Asks/Reset";
 
-const ResetScreen = () => {
-  return (
-    <>
-      <Modal title="إعادة" form={<Reset />} />
-    </>
-  );
+const ResetScreen = ({ match }) => {
+  return <Reset title="إعادة" params={match.params} />;
 };
 
 export default ResetScreen;

@@ -20,8 +20,9 @@ export default class Email {
 
   async send(subject) {
     const html = `
-    <h1>فريق موقع التاريخ الاسلامي</h1>
-    <h1>${subject} ${this.firstName}</h1>
+    <h1>مرحبا ${this.firstName}</h1>
+    <h1>معك فريق موقع التاريخ الاسلامي</h1>
+    <h2>${subject}</h2>
     <a href=${this.url}><bold>إعادة كلمة السر</bold></a>`;
 
     const mailOptions = {
@@ -35,9 +36,6 @@ export default class Email {
   }
 
   async sendPasswordReset() {
-    await this.send(
-      "إعادة كلمة المرور",
-      "رمز إعادة تعيين كلمة المرور (صالح لمدة 10 دقائق فقط)"
-    );
+    await this.send(" الرمز  لإعادة كلمة المرور (صالح لمدة 10 دقائق فقط)");
   }
 }
