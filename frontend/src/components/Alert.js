@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { SUCCESS } from "../constants";
+import { DEFAULT } from "../constants";
 
 const Alert = ({ err, color }) => {
   const [translate, setTranslate] = useState(true);
@@ -11,7 +11,7 @@ const Alert = ({ err, color }) => {
     err && setTranslate(true);
     const timeout = setTimeout(() => {
       setTranslate(false);
-      dispatch({ type: SUCCESS });
+      dispatch({ type: DEFAULT });
     }, 2000);
 
     return () => {

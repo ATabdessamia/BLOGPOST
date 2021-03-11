@@ -13,7 +13,7 @@ const WelcomeScreen = () => {
             احجز مقعدك واخبرنا عن مجد اجدادنا
           </p>
         </div>
-        <Link to="/signin">
+        <Link to="/home">
           <button className="bg-gray-200 opacity-70 float-left py-2 px-4 rounded md:text-xl sm:text-lg text-base font-thin shadow-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-gray-200 transition-transform duration-300 ease-in-out transform hover:scale-105 hover:opacity-100">
             ابدإ الرحلة
           </button>

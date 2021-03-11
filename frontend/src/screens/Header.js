@@ -15,7 +15,6 @@ const Header = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   let { success } = useSelector((state) => state.auth);
-
   const [burger, setBurger] = useState(true);
   const [avatar, setAvatar] = useState(true);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -37,11 +36,11 @@ const Header = () => {
   };
 
   const burgerHidden = burger
-    ? "transition ease-out duration-100 transform hidden scale-95"
-    : "transition ease-out duration-100 transform scale-100";
+    ? "transition ease-out duration-100 transform hidden opacity-0 scale-95"
+    : "transition ease-out duration-100 transform opacity-100 scale-100";
   const avatarHidden = avatar
-    ? "transition ease-out duration-100 transform hidden scale-95"
-    : "transition ease-out duration-100 transform scale-100";
+    ? "transition ease-out duration-100 transform hidden opacity-0 scale-95"
+    : "transition ease-out duration-100 transform opacity-100 scale-100";
 
   return (
     <header className="md:px-10 px-4 py-4 border-b shadow-md sticky top-0 bg-gray-100 z-50">
@@ -64,8 +63,8 @@ const Header = () => {
           <div
             className={`${
               isLoggedIn
-                ? `transition ease-out duration-100 transform scale-100`
-                : `transition ease-out duration-100 transform hidden scale-95`
+                ? `transition ease-out duration-100 transform opacity-100 scale-100`
+                : `transition ease-out duration-100 transform hidden opacity-0 scale-95`
             }`}
           >
             <NavAvatar onClick={onAvatarHandeler} to="#" />
@@ -85,8 +84,8 @@ const Header = () => {
           <div
             className={
               isLoggedIn
-                ? `transition ease-out duration-100 transform hidden scale-95`
-                : `transition ease-out duration-100 transform scale-100`
+                ? `transition ease-out duration-100 transform hidden opacity-0 scale-95`
+                : `transition ease-out duration-100 transform opacity-100 scale-100`
             }
           >
             <NavAvatar

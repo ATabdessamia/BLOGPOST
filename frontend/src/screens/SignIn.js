@@ -53,7 +53,7 @@ const SignIn = () => {
           </div>
 
           <div className="mt-10">
-            <Link to="/" className="text-blue-900 hover:text-opacity-70">
+            <Link to="/home" className="text-blue-900 hover:text-opacity-70">
               <svg
                 className="w-6 h-6"
                 fill="currentColor"

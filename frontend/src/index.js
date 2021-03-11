@@ -4,7 +4,6 @@ import { Provider } from "react-redux";
 import { applyMiddleware, createStore } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension";
 import thunk from "redux-thunk";
-import { CookiesProvider } from "react-cookie";
 
 import "./index.css";
 import "./tailwind.css";
@@ -19,10 +18,8 @@ const store = createStore(
 );
 
 ReactDOM.render(
-  <CookiesProvider>
-    <Provider store={store}>
-      <App />
-    </Provider>
-  </CookiesProvider>,
+  <Provider store={store}>
+    <App />
+  </Provider>,
   document.getElementById("root")
 );
