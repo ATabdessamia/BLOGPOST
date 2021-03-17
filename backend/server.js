@@ -4,6 +4,8 @@ import cookie from "cookie-parser";
 import cors from "cors";
 import bodyParser from "body-parser";
 import morgan from "morgan";
+import path from "path";
+import { fileURLToPath } from "url";
 
 import globalErrorsHandler from "./controllers/ErrorController.js";
 import connection from "./utilits/DataBase.js";
@@ -11,6 +13,8 @@ import AppError from "./utilits/AppErrors.js";
 import postRoutes from "./routes/PostRoutes.js";
 import userRoutes from "./routes/UserRoutes.js";
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 // coder exception
 process.on("uncaughtException", (err) => {
   console.log(err.name, err.message);
@@ -23,6 +27,8 @@ dotenv.config();
 connection();
 
 const app = express();
+
+app.use(express.static(path.join(__dirname, "../frontend/public")));
 
 if (process.env.NODE_ENV === "development") {
   app.use(morgan("dev"));

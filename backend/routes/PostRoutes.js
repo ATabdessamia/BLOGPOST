@@ -12,7 +12,10 @@ import {
 
 const postRouter = express.Router();
 
-postRouter.route("/").get(getAllPosts).post(createNewPost);
+postRouter
+  .route("/")
+  .get(getAllPosts)
+  .post(uploadPostImages, resizePostImages, createNewPost);
 postRouter
   .route("/:id")
   .get(getPost)

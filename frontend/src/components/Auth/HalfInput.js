@@ -33,6 +33,7 @@ const HalfInput = ({ label, id, value, onChange }) => {
           placeholder="هارون"
           max="128"
           min="8"
+          required
         />
       </div>
     </div>

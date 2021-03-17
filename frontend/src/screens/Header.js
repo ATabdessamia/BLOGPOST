@@ -14,18 +14,15 @@ import { getme, logout } from "../actions/AuthActions";
 const Header = () => {
   const dispatch = useDispatch();
   const history = useHistory();
-  let { success } = useSelector((state) => state.auth);
+  let { auth } = useSelector((state) => state.auth);
   const [burger, setBurger] = useState(true);
   const [avatar, setAvatar] = useState(true);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
     dispatch(getme());
   }, [dispatch]);
 
-  useEffect(() => {
-    success && setIsLoggedIn(true);
-  });
+  if (!auth) return null;
 
   const onBurgerHandeler = () => {
     setBurger(!burger);
@@ -43,33 +40,27 @@ const Header = () => {
     : "transition ease-out duration-100 transform opacity-100 scale-100";
 
   return (
-    <header className="md:px-10 px-4 py-4 border-b shadow-md sticky top-0 bg-gray-100 z-50">
-      <Nav>
-        <NavItem className="md:hidden">
-          <NavBurger onClick={onBurgerHandeler} hidden={burgerHidden} />
-        </NavItem>
+    <>
+      <header className="md:px-10 px-4 py-4 border-b shadow sticky top-0 bg-gray-100 z-40">
+        <Nav>
+          <NavItem className="md:hidden">
+            <NavBurger onClick={onBurgerHandeler} hidden={burgerHidden} />
+          </NavItem>
 
-        <NavItem className="flex items-center">
-          <NavBrand />
-          <div className="text-lg text-gray-700 hover:bg-gray-100 bg-gray-200 px-2 rounded mr-5 hidden md:block">
-            <NavLink
-              to="/home"
-              text="الصفحة الرئيسية"
-              className="block hover:opacity-75"
-            />
-          </div>
-        </NavItem>
-        <NavItem>
-          <div
-            className={`${
-              isLoggedIn
-                ? `transition ease-out duration-100 transform opacity-100 scale-100`
-                : `transition ease-out duration-100 transform hidden opacity-0 scale-95`
-            }`}
-          >
-            <NavAvatar onClick={onAvatarHandeler} to="#" />
+          <NavItem className="flex items-center">
+            <NavBrand />
+            <div className="text-lg text-gray-700 hover:bg-gray-100 bg-gray-200 px-2 rounded mr-5 hidden md:block">
+              <NavLink
+                to="/home"
+                text="الصفحة الرئيسية"
+                className="block hover:opacity-75"
+              />
+            </div>
+          </NavItem>
+          <NavItem>
+            <NavAvatar onClick={onAvatarHandeler} to="#" auth={auth} />
             <div
-              className={`origin-top-right absolute left-14 w-48 rounded-md shadow-lg py-1 bg-gray-100 ring-1 ring-black ring-opacity-5 ${avatarHidden}`}
+              className={`origin-top-right absolute left-14 w-48 sm:left-20 md:left-24 rounded-md shadow-lg py-1 bg-gray-100 ring-1 ring-black ring-opacity-5 ${avatarHidden}`}
             >
               <NavLink to="/profile" text="صفحتي الشخصية" />
               <NavLink to="/settings" text="التعديلات" />
@@ -79,33 +70,19 @@ const Header = () => {
                 onClick={() => dispatch(logout(history))}
               />
             </div>
-          </div>
-
-          <div
-            className={
-              isLoggedIn
-                ? `transition ease-out duration-100 transform hidden opacity-0 scale-95`
-                : `transition ease-out duration-100 transform opacity-100 scale-100`
-            }
-          >
-            <NavAvatar
-              to="/signin"
-              className="bg-gray-700 py-1 px-2 text-lg rounded focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white hover:bg-gray-600 text-gray-50 transition-transform duration-300 ease-in-out transform hover:scale-105"
-              text="تسجيل الدخول"
+          </NavItem>
+        </Nav>
+        <Nav className={`mt-6 ${burgerHidden}  md:hidden`}>
+          <NavItem className="px-2 pt-2 pb-3 space-y-1">
+            <NavLink
+              to="/home"
+              text="الصفحة الرئيسية"
+              className="bg-gray-200 text-gray-800 block px-3 py-2 rounded-md text-lg font-medium hover:bg-gray-300 cursor-pointer"
             />
-          </div>
-        </NavItem>
-      </Nav>
-      <Nav className={`mt-6 ${burgerHidden}  md:hidden`}>
-        <NavItem className="px-2 pt-2 pb-3 space-y-1">
-          <NavLink
-            to="/home"
-            text="الصفحة الرئيسية"
-            className="bg-gray-200 text-gray-800 block px-3 py-2 rounded-md text-lg font-medium hover:bg-gray-300 cursor-pointer"
-          />
-        </NavItem>
-      </Nav>
-    </header>
+          </NavItem>
+        </Nav>
+      </header>
+    </>
   );
 };
 

@@ -1,6 +1,6 @@
 import React from "react";
 
-const TextField = () => {
+const TextField = ({ onChange, value }) => {
   return (
     <div className="flex bg-gray-700 items-center rounded-md border shadow text-lg mb-2">
       <span className="px-4 py-2 whitespace-no-wrap text-gray-100">
@@ -13,6 +13,8 @@ const TextField = () => {
         autoComplete="off"
         required
         placeholder="اكتب هنا..."
+        onChange={onChange}
+        value={value}
       />
     </div>
   );

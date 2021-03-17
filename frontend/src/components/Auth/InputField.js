@@ -29,9 +29,9 @@ const InputField = ({ label, svg, id, type, max, min, onChange, value }) => {
           onChange={onChange}
           className="text-sm sm:text-base text-gray-700 pr-10 pl-4 rounded-lg border-2 border-gray-200 w-full py-2 focus:outline-none focus:ring-2 focus:ring-gray-300"
           placeholder={label}
-          required
           maxLength={max}
           minLength={min}
+          required
         />
       </div>
     </div>

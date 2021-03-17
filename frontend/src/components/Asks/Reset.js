@@ -5,8 +5,8 @@ import { useHistory } from "react-router-dom";
 import InputField from "./InputField";
 import SaveBtn from "./SaveBtn";
 import Form from "./Form";
-import Alert from "../Alert";
 import Loading from "../Loading";
+import Alert from "../Alert";
 import { resetPwd } from "../../actions/AuthActions";
 
 const initialState = {
@@ -19,7 +19,7 @@ const Reset = ({ title, params }) => {
   const dispatch = useDispatch();
   const { token } = params;
   const history = useHistory();
-  let { loading, error, auth, success } = useSelector((state) => state.auth);
+  let { loading, error } = useSelector((state) => state.auth);
 
   const clear = () => {
     setFormData(initialState);
@@ -37,9 +37,7 @@ const Reset = ({ title, params }) => {
 
   return (
     <>
-      {loading && <Loading />}
-      {error && <Alert err={auth} color="red" />}
-      {success && <Alert err={"العملية تمت بنجاح"} color="green" />}
+      {loading && <Loading />} {error && <Alert />}
       <Form
         onSubmit={(e) => {
           onSubmitForm(e);

@@ -2,16 +2,16 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { forgotPwd } from "../../actions/AuthActions";
 
-import Alert from "../Alert";
 import Loading from "../Loading";
 import Form from "./Form";
 import InputField from "./InputField";
 import SaveBtn from "./SaveBtn";
+import Alert from "../Alert";
 
 const Forgot = ({ title }) => {
   const dispatch = useDispatch();
   const [email, setEmail] = useState("");
-  let { loading, error, auth, success } = useSelector((state) => state.auth);
+  let { loading, error } = useSelector((state) => state.auth);
 
   const onChangeEmail = (e) => {
     setEmail(e.target.value);
@@ -26,8 +26,7 @@ const Forgot = ({ title }) => {
   return (
     <>
       {loading && <Loading />}
-      {error && <Alert err={auth} color="red" />}
-      {success && <Alert err={auth.message} color="green" />}
+      {error && <Alert />}
       <Form
         onSubmit={(e) => {
           onSubmitForm(e);

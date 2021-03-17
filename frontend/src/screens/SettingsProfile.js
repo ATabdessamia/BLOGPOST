@@ -1,26 +1,89 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { updateMe, updatePassword } from "../actions/AuthActions";
 
 import File from "../components/Auth/File";
 import HalfInput from "../components/Auth/HalfInput";
 import InputField from "../components/Auth/InputField";
 import SaveBtn from "../components/Auth/SaveBtn";
+import Alert from "../components/Alert";
 
+const initialState = {
+  firstName: "",
+  lastName: "",
+  email: "",
+  photo: "",
+};
+
+const initialStatePwd = {
+  password: "",
+  confirmPassword: "",
+  passwordCurrent: "",
+};
 const SettingsProfile = () => {
-  let { auth } = useSelector((state) => state.auth);
+  const [formData, setFormData] = useState(initialState);
+  const [formDataPwd, setFormDataPwd] = useState(initialStatePwd);
+
+  const dispatch = useDispatch();
+  let { auth, error } = useSelector((state) => state.auth);
 
   if (!auth) return null;
 
+  const onChangeValue = (e) =>
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+
+  const onChangeValuePwd = (e) =>
+    setFormDataPwd({
+      ...formDataPwd,
+      [e.target.name]: e.target.value,
+    });
+
+  const onFormSubmit = (e) => {
+    e.preventDefault();
+    const form = new FormData();
+    form.append("firstName", formData.firstName);
+    form.append("lastName", formData.lastName);
+    form.append("email", formData.email);
+    form.append("photo", formData.photo);
+    dispatch(updateMe(form));
+    setFormData(initialState);
+  };
+
+  const onFormSubmitPwd = (e) => {
+    e.preventDefault();
+    dispatch(updatePassword(formDataPwd));
+    setFormDataPwd(initialStatePwd);
+  };
+
   return (
     <div className="container mx-auto mt-10">
+      {error && <Alert />}
+      {auth && <Alert />}
       <div className="sm:w-8/12 w-full mx-auto p-5 bg-gray-100 rounded-mds shadow-md">
         <h1 className="text-center font-kufi text-xl sm:text-2xl text-gray-700">
           تعديل الصفحة الشخصية
         </h1>
-        <form className="sm:w-1/2 w-full mx-auto mt-5">
+        <form
+          className="sm:w-1/2 w-full mx-auto mt-5"
+          onSubmit={(e) => onFormSubmit(e)}
+          encType="multipart/form-data"
+        >
           <div className="flex -mx-3">
-            <HalfInput label="الاسم الأول" id="firstName" />
-            <HalfInput label="اسم العائلة" id="lastName" />
+            <HalfInput
+              label="الاسم الأول"
+              id="firstName"
+              value={formData.firstName}
+              onChange={(e) => onChangeValue(e)}
+            />
+            <HalfInput
+              label="اسم العائلة"
+              id="lastName"
+              value={formData.lastName}
+              onChange={(e) => onChangeValue(e)}
+            />
           </div>
           <InputField
             label="البريد الإلكتروني"
@@ -29,8 +92,18 @@ const SettingsProfile = () => {
             type="email"
             min="3"
             max="320"
+            value={formData.email}
+            onChange={(e) => onChangeValue(e)}
           />
-          <File auth={auth} />
+          <File
+            auth={auth}
+            onChange={(e) =>
+              setFormData({
+                ...formData,
+                [e.target.name]: e.target.files[0],
+              })
+            }
+          />
           <SaveBtn text="حفظ التعديلات" />
         </form>
       </div>
@@ -39,33 +112,39 @@ const SettingsProfile = () => {
         <h1 className="text-center font-kufi text-xl sm:text-2xl text-gray-700">
           تغيير كلمة المرور
         </h1>
-        <form className="sm:w-1/2 w-full mx-auto mt-5">
+        <form
+          className="sm:w-1/2 w-full mx-auto mt-5"
+          onSubmit={(e) => onFormSubmitPwd(e)}
+        >
           <InputField
             label="كلمة المرور القديمة"
             svg="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
-            id="password"
+            id="passwordCurrent"
             type="password"
-            name="password"
-            min="20"
+            name="passwordCurrent"
+            min="8"
             max="128"
+            onChange={(e) => onChangeValuePwd(e)}
           />
           <InputField
             label="كلمة المرور الجديدة"
             svg="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
-            id="password2"
+            id="password"
             type="password"
             name="password"
-            min="20"
+            min="8"
             max="128"
+            onChange={(e) => onChangeValuePwd(e)}
           />
           <InputField
             label="تأكيد كلمة المرور"
             svg="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
-            id="confirmpassword"
-            name="confirmpassword"
+            id="confirmPassword"
+            name="confirmPassword"
             type="password"
-            min="20"
+            min="8"
             max="128"
+            onChange={(e) => onChangeValuePwd(e)}
           />
           <SaveBtn text="حفظ كلمة المرور" />
         </form>

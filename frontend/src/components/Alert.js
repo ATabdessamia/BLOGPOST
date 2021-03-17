@@ -1,29 +1,20 @@
-import React, { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { DEFAULT } from "../constants";
+import React from "react";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
-const Alert = ({ err, color }) => {
-  const [translate, setTranslate] = useState(true);
-  const dispatch = useDispatch();
-  const trans = translate ? "translate-y-0" : "-translate-y-full hidden";
-
-  useEffect(() => {
-    err && setTranslate(true);
-    const timeout = setTimeout(() => {
-      setTranslate(false);
-      dispatch({ type: DEFAULT });
-    }, 2000);
-
-    return () => {
-      clearTimeout(timeout);
-    };
-  }, [err, dispatch]);
+const Alert = () => {
   return (
-    <div
-      className={`bg-${color}-500 p-5 w-3/4 sm:w-1/3 mx-auto text-lg text-gray-50 font-medium text-center shadow-2xl transform ${trans} transition ease-in-out duration-1000`}
-    >
-      <p>{err}</p>
-    </div>
+    <ToastContainer
+      autoClose={2000}
+      position="top-center"
+      hideProgressBar={false}
+      newestOnTop={false}
+      closeOnClick
+      rtl={true}
+      pauseOnFocusLoss
+      draggable
+      pauseOnHover
+    />
   );
 };
 

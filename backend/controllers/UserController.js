@@ -32,7 +32,7 @@ export const resizeUserPhoto = catchAsync(async (req, res, next) => {
     .resize(500, 500)
     .toFormat("jpeg")
     .jpeg({ quality: 90 })
-    .toFile(`public/images/users/${req.file.filename}`);
+    .toFile(`../frontend/public/images/users/${req.file.filename}`);
 
   next();
 });

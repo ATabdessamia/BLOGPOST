@@ -21,7 +21,7 @@ const SingnUp = () => {
   const [formData, setFormData] = useState(initialState);
   const dispatch = useDispatch();
   const history = useHistory();
-  let { loading, error, auth } = useSelector((state) => state.auth);
+  let { loading, error } = useSelector((state) => state.auth);
 
   const clear = () => {
     setFormData(initialState);
@@ -38,8 +38,7 @@ const SingnUp = () => {
 
   return (
     <>
-      {loading && <Loading />}
-      {error && <Alert err={auth} color="red" />}
+      {loading && <Loading />} {error && <Alert />}
       <div className="min-h-screen flex flex-row items-center justify-center">
         <div className="hidden sm:block">
           <img
@@ -55,7 +54,10 @@ const SingnUp = () => {
             إنشاء حساب جديد
           </div>
           <div className="mt-10">
-            <Link to="/signin" className="text-blue-900 hover:text-opacity-70">
+            <Link
+              to="/signin"
+              className="text-blue-900 hover:text-opacity-70 inline-block"
+            >
               <svg
                 className="w-6 h-6"
                 fill="currentColor"
