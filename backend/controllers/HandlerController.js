@@ -54,15 +54,14 @@ export const getAllHand = (Model) =>
       .filter()
       .sort()
       .paginate();
-
+    const count = await Model.countDocuments();
     const doc = await features.query;
-
     res.status(200).json({
       status: "success",
-      resultes: doc.length,
       data: {
         data: doc,
       },
+      pages: Math.ceil(count / features.query.options.limit),
     });
   });
 

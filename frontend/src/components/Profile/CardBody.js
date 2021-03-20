@@ -1,12 +1,18 @@
 import React from "react";
+import moment from "moment";
+import "moment/locale/ar-ma";
 
-const CardBody = () => {
+const CardBody = ({ title, createdAt }) => {
+  moment.locale("ar-ma");
   return (
     <div className="p-2">
       <h1 className="block font-kufi text-gray-700 font-semibold text-xl mb-2">
-        العنوان
+        {title}
       </h1>
-      <h4 className="text-sm text-gray-400 y-2"> نشر في 45</h4>
+      <h4 className="text-sm text-gray-400 y-2">
+        {" "}
+        نشر {moment(createdAt).fromNow()}
+      </h4>
       <div className="mt-2 float-left">
         <button className="focus:outline-none focus:ring-2 focus:ring-inset focus:ring-red-100 transition-transform duration-300 ease-in-out transform hover:scale-105 bg-red-400 text-gray-50 rounded-full">
           <svg

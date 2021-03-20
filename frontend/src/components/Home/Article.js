@@ -5,13 +5,17 @@ import Title from "./Title";
 import Body from "./Body";
 import Details from "./Details";
 
-const Article = () => {
+const Article = ({ post }) => {
   return (
     <article className="p-2 flex">
-      <Image />
+      <Image cover={post.cover} />
       <Body>
-        <Title />
-        <Details />
+        <Title title={post.title} slug={post.slug} id={post._id} />
+        <Details
+          createdAt={post.createdAt}
+          author={post.author}
+          rating={post.rating}
+        />
       </Body>
     </article>
   );

@@ -20,3 +20,31 @@ export const createPost = (post) => async (dispatch) => {
     );
   }
 };
+
+export const fetchPosts = (page = "") => async (dispatch) => {
+  try {
+    const { data } = await api.fetchPosts(page);
+
+    dispatch({ type: FETCH_POSTS, payload: data });
+  } catch (error) {
+    console.log(
+      error.response && error.response.data.message
+        ? error.response.data.message
+        : error.message
+    );
+  }
+};
+
+export const fetchPost = (id) => async (dispatch) => {
+  try {
+    const { data } = await api.fetchPost(id);
+
+    dispatch({ type: FETCH_POST, payload: data });
+  } catch (error) {
+    console.log(
+      error.response && error.response.data.message
+        ? error.response.data.message
+        : error.message
+    );
+  }
+};

@@ -12,9 +12,8 @@ export default (posts = [], action) => {
     case FETCH_POSTS:
       return action.payload;
     case FETCH_POST:
-      return posts.map((post) =>
-        post._id === action.payload._id ? action.payload : post
-      );
+      return { post: action.payload };
+
     case CREATE:
       return [...posts, action.payload];
     case UPDATE:

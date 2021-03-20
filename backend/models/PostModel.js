@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import slugify from "slugify";
+import ArabSlug from "../utilits/ArabSlug.js";
 
 const reviewSchema = mongoose.Schema(
   {
@@ -23,6 +23,7 @@ const reviewSchema = mongoose.Schema(
 const postSchema = mongoose.Schema({
   title: {
     type: String,
+    trim: true,
     required: [true, "المنشور يحتاج العنوان"],
   },
   description: {
@@ -54,7 +55,7 @@ const postSchema = mongoose.Schema({
 postSchema.index({ slug: 1 });
 
 postSchema.pre("save", function (next) {
-  this.slug = slugify(this.name, { lower: true });
+  this.slug = ArabSlug(this.title);
   next();
 });
 
@@ -62,6 +63,9 @@ postSchema.pre(/^find/, function (next) {
   // fill up reference
   this.populate({
     path: "reviews",
+  }).populate({
+    path: "author",
+    select: "email firstName lastName",
   });
   next();
 });

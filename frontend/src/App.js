@@ -25,8 +25,8 @@ const App = () => {
           <Route path="/resetPassword/:token" exact component={ResetScreen} />
           <>
             <Header />
-            <Route path="/home" exact component={HomeScreen} />
-            <Route path="/post" exact component={PostScreen} />
+            <Route path="/home/page/:pageNumber" exact component={HomeScreen} />
+            <Route path="/:id/:slug" exact component={PostScreen} />
             <Route path="/profile" exact component={ProfileScreen} />
             <Route path="/settings" exact component={SettingsProfile} />
             <Footer />

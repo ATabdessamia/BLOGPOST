@@ -30,11 +30,14 @@ const upload = multer({
 export const uploadPostImages = upload.single("cover");
 
 export const resizePostImages = catchAsync(async (req, res, next) => {
-  if (!req.file.cover) return next();
-  /* cover image */
-  req.body.cover = `post-${req.params.id || ""}-${Date.now()}-cover.jpeg`;
+  if (!req.file) return next();
 
-  await sharp(req.files.cover[0].buffer)
+  /* cover image */
+  req.body.cover = `post-${
+    req.params.id || req.body.author
+  }-${Date.now()}-cover.jpeg`;
+
+  await sharp(req.file.buffer)
     .resize(2000, 1333)
     .toFormat("jpeg")
     .jpeg({ quality: 90 })

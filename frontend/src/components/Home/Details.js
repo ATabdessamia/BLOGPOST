@@ -1,15 +1,19 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import moment from "moment";
+import "moment/locale/ar-ma";
 
 import Star from "./Star";
 
-const Details = () => {
+const Details = ({ createdAt, rating, author }) => {
+  moment.locale("ar-ma");
+  const fullName = author.firstName + " " + author.lastName;
   return (
     <div className="text-sm font-medium mt-1">
       <div>
         <span className="sr-only">الوقت</span>
         <div>
-          <h2 className="text-gray-400">نشر قبل 10 دقائق</h2>
+          <h2 className="text-gray-400">نشر {moment(createdAt).fromNow()}</h2>
         </div>
       </div>
       <div className="mt-1">
@@ -21,11 +25,11 @@ const Details = () => {
             className="cursor-pointer text-gray-500 hover:text-gray-900"
           >
             {" "}
-            اسم المؤلف{" "}
+            {fullName}{" "}
           </Link>
         </span>
       </div>
-      <Star />
+      <Star rating={rating} />
     </div>
   );
 };

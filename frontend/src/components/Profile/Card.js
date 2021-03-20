@@ -5,7 +5,7 @@ import Star from "./Star";
 import CardBody from "./CardBody";
 import Edite from "./Edite";
 
-const Card = () => {
+const Card = ({ post }) => {
   return (
     <Link
       to="post"
@@ -13,14 +13,14 @@ const Card = () => {
     >
       <div className="bg-gray-900">
         <img
-          src="/images/Foggy.jpg"
+          src={`/images/posts/${post.cover}`}
           alt="avatar"
           className="block opacity-40"
         />
       </div>
-      <Star />
+      <Star rating={post.rating} />
       <Edite />
-      <CardBody />
+      <CardBody title={post.title} createdAt={post.createdAt} />
     </Link>
   );
 };

@@ -5,7 +5,7 @@ const Star = ({ starId, rating, onMouseEnter, onMouseLeave, onClick }) => {
   if (rating && rating >= starId) {
     color = "text-yellow-500";
   }
-  console.log(rating);
+
   return (
     <div
       className={color}

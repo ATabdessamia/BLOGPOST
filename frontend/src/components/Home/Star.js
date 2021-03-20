@@ -1,9 +1,9 @@
 import React from "react";
 
-const Star = () => {
+const Star = ({ rating }) => {
   return (
     <div className="absolute top-5 left-4 bg-gray-100 p-1 rounded-full hidden sm:inline-flex">
-      <span className="text-yellow-900 w-4 h-5 ml-1">4.0</span>
+      <span className="text-yellow-900 w-4 h-5 ml-1">{rating}</span>
       <span className="text-yellow-500">
         <span className="sr-only">التقييم</span>
         <svg width="16" height="20" fill="currentColor">
