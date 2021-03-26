@@ -8,6 +8,7 @@ import {
   deletePost,
   uploadPostImages,
   resizePostImages,
+  getPostsBy,
 } from "../controllers/PostController.js";
 
 const postRouter = express.Router();
@@ -21,5 +22,7 @@ postRouter
   .get(getPost)
   .patch(uploadPostImages, resizePostImages, updatePost)
   .delete(deletePost);
+
+postRouter.route("/profile/:id").get(getPostsBy);
 
 export default postRouter;

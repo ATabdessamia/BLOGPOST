@@ -1,9 +1,19 @@
 import React from "react";
 
-const Edite = () => {
+const Edite = ({ hidden, id, setCurrentId }) => {
+  const onEditeHandler = (e, id) => {
+    e.preventDefault();
+    setCurrentId(id);
+    e.stopPropagation();
+  };
   return (
-    <div className="absolute top-1 right-2 text-gray-200">
-      <button className="focus:outline-none focus:shadow-inner opacity-80 hover:opacity-100 transition-transform duration-300 ease-in-out transform hover:scale-105">
+    <div
+      className={`absolute top-1 right-2 text-gray-200 ${hidden ? hidden : ""}`}
+    >
+      <button
+        className="focus:outline-none focus:shadow-inner opacity-80 hover:opacity-100 transition-transform duration-300 ease-in-out transform hover:scale-105"
+        onClick={(e) => onEditeHandler(e, id)}
+      >
         <svg
           className="w-6 h-6"
           fill="currentColor"

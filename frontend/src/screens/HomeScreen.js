@@ -6,17 +6,19 @@ import Articles from "../components/Home/Articles";
 import Navs from "../components/Home/Navs";
 import Pagination from "../components/Pagination/Pagination";
 import { fetchPosts } from "../actions/PostActions";
+import Empty from "../components/Empty";
 
-const HomeScreen = ({ match }) => {
+const HomeScreen = ({ location, match }) => {
   const dispatch = useDispatch();
   const { data, pages } = useSelector((state) => state.posts);
-  const page = match.params.pageNumber;
+  const page = location.search.split("&")[0].split("=")[1];
+  const path = match.path.split("/")[1];
 
   useEffect(() => {
     dispatch(fetchPosts(page));
   }, [dispatch, page]);
 
-  if (!data || !pages) return null;
+  if (!pages || !data) return <Empty />;
 
   return (
     <>
@@ -29,7 +31,7 @@ const HomeScreen = ({ match }) => {
             })}
         </Articles>
       </section>
-      <Pagination pages={pages} />
+      <Pagination pages={pages} page={page} path={path} />
     </>
   );
 };

@@ -6,6 +6,8 @@ const API = axios.create({
 });
 
 export const fetchPosts = (page) => API.get(`/posts?page=${page}`);
+export const fetchPostsBy = (id, page) =>
+  API.get(`/posts/profile/${id}?page=${page}`);
 export const createPost = (newPost) => API.post("/posts", newPost);
 export const fetchPost = (id) => API.get(`/posts/${id}`);
 export const updatePost = (id, updatedPost) =>

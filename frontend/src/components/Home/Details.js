@@ -1,13 +1,20 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import moment from "moment";
 import "moment/locale/ar-ma";
 
 import Star from "./Star";
+import { getuser } from "../../actions/UserActions";
 
 const Details = ({ createdAt, rating, author }) => {
+  const dispatch = useDispatch();
   moment.locale("ar-ma");
   const fullName = author.firstName + " " + author.lastName;
+
+  const getUserHandler = (id) => {
+    dispatch(getuser(id));
+  };
   return (
     <div className="text-sm font-medium mt-1">
       <div>
@@ -20,9 +27,12 @@ const Details = ({ createdAt, rating, author }) => {
         <span className="inline text-gray-900">
           المؤلف
           <Link
-            to="/profile"
+            to={`/profile?page=1&author=${author._id}`}
             href="#/"
             className="cursor-pointer text-gray-500 hover:text-gray-900"
+            onClick={() => {
+              getUserHandler(author._id);
+            }}
           >
             {" "}
             {fullName}{" "}

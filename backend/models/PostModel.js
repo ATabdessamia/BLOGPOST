@@ -47,8 +47,9 @@ const postSchema = mongoose.Schema({
   },
   createdAt: {
     type: Date,
-    default: new Date(),
+    default: Date.now,
   },
+
   slug: String,
 });
 
@@ -65,7 +66,7 @@ postSchema.pre(/^find/, function (next) {
     path: "reviews",
   }).populate({
     path: "author",
-    select: "email firstName lastName",
+    select: "firstName lastName photo",
   });
   next();
 });

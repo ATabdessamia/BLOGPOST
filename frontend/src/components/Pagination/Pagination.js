@@ -1,50 +1,77 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 
 import ArrowButton from "./ArrowButton";
 import NumButton from "./NumButton";
-import { fetchPosts } from "../../actions/PostActions";
+import { fetchPosts, fetchPostsBy } from "../../actions/PostActions";
 
-const Pagination = ({ pages }) => {
+const Pagination = ({ pages, page, path, id }) => {
   const dispatch = useDispatch();
+  const history = useHistory();
   const [active, setActive] = useState("");
-  let [activeIndex, setActiveIndex] = useState(0);
+  let [activeIndex, setActiveIndex] = useState(1);
 
   const onActiveClick = (i) => {
     setActiveIndex(i);
+    id ? dispatch(fetchPostsBy(id, i)) : dispatch(fetchPosts(i));
     setActive("border-t-4");
   };
 
   const next = () => {
     activeIndex++;
+    activeIndex > pages && (activeIndex = pages);
     setActiveIndex(activeIndex);
-    dispatch(fetchPosts(activeIndex));
-    activeIndex > pages - 1 && setActiveIndex(pages - 1);
+    if (id) {
+      dispatch(fetchPostsBy(id, activeIndex));
+      history.push(`/${path}?page=${activeIndex}&author=${id}`);
+    } else {
+      dispatch(fetchPosts(activeIndex));
+      history.push(`/${path}?page=${activeIndex}`);
+    }
   };
-
   const prev = () => {
     activeIndex--;
+    activeIndex < 1 && (activeIndex = 1);
     setActiveIndex(activeIndex);
-    dispatch(fetchPosts(activeIndex));
-    activeIndex < 1 && setActiveIndex(0);
+    if (id) {
+      dispatch(fetchPostsBy(id, activeIndex));
+      history.push(`/${path}?page=${activeIndex}&author=${id}`);
+    } else {
+      dispatch(fetchPosts(activeIndex));
+      history.push(`/${path}?page=${activeIndex}`);
+    }
   };
 
   const last = () => {
-    activeIndex = pages - 1;
+    activeIndex = pages;
+    activeIndex > pages && (activeIndex = pages);
     setActiveIndex(activeIndex);
-    dispatch(fetchPosts(activeIndex));
-    activeIndex > pages - 1 && setActiveIndex(pages - 1);
+    if (id) {
+      dispatch(fetchPostsBy(id, activeIndex));
+      history.push(`/${path}?page=${activeIndex}&author=${id}`);
+    } else {
+      dispatch(fetchPosts(activeIndex));
+      history.push(`/${path}?page=${activeIndex}`);
+    }
   };
 
   const first = () => {
-    setActiveIndex(0);
-    dispatch(fetchPosts(activeIndex));
-    activeIndex < 1 && setActiveIndex(0);
+    activeIndex = 1;
+    activeIndex < 1 && (activeIndex = 1);
+    setActiveIndex(activeIndex);
+    if (id) {
+      dispatch(fetchPostsBy(id, activeIndex));
+      history.push(`/${path}?page=${activeIndex}&author=${id}`);
+    } else {
+      dispatch(fetchPosts(activeIndex));
+      history.push(`/${path}?page=${activeIndex}`);
+    }
   };
 
   useEffect(() => {
-    onActiveClick(0);
-  }, []);
+    onActiveClick(+page);
+  }, [page]);
 
   const points = Math.floor(pages / 2);
 
@@ -72,51 +99,77 @@ const Pagination = ({ pages }) => {
         </ArrowButton>
         <div className="flex flex-row-reverse items-center text-lg font-black">
           {pages > 7
-            ? [...Array(pages).keys()].map((p, i) => {
-                return i === points ? (
+            ? [...Array(pages).keys()].map((p) => {
+                return p + 1 === points ? (
                   <span key={p._id}>
                     <NumButton
-                      onClick={() => onActiveClick(i)}
-                      active={i === activeIndex ? active + " points ml-7" : ""}
-                      text={points === activeIndex ? activeIndex + 1 : "..."}
+                      to={
+                        id
+                          ? `/${path}?page=${p + 1}&author=${id}`
+                          : `/${path}?page=${p + 1}`
+                      }
+                      onClick={() => onActiveClick(p + 1)}
+                      active={
+                        p + 1 === activeIndex ? active + " points ml-7" : ""
+                      }
+                      text={points === activeIndex ? activeIndex : "..."}
                     />
                   </span>
-                ) : i === activeIndex ? (
+                ) : p + 1 === activeIndex ? (
                   <span key={p._id}>
                     <NumButton
-                      onClick={() => onActiveClick(i)}
-                      active={i === activeIndex ? active : ""}
-                      text={activeIndex + 1}
+                      to={
+                        id
+                          ? `/${path}?page=${p + 1}&author=${id}`
+                          : `/${path}?page=${p + 1}`
+                      }
+                      onClick={() => onActiveClick(p + 1)}
+                      active={p + 1 === activeIndex ? active : ""}
+                      text={activeIndex}
                     />
                   </span>
-                ) : i < points && i <= 2 ? (
+                ) : p + 1 < points && p + 1 <= 3 ? (
                   <span key={p._id}>
                     <NumButton
-                      onClick={() => onActiveClick(i)}
-                      active={i === activeIndex ? active : ""}
+                      to={
+                        id
+                          ? `/${path}?page=${p + 1}&author=${id}`
+                          : `/${path}?page=${p + 1}`
+                      }
+                      onClick={() => onActiveClick(p + 1)}
+                      active={p + 1 === activeIndex ? active : ""}
                       text={p + 1}
                     />
                   </span>
                 ) : (
-                  i > points &&
-                  i >= pages - 3 && (
+                  p + 1 > points &&
+                  p + 1 >= pages - 2 && (
                     <span key={p._id}>
                       <NumButton
-                        onClick={() => onActiveClick(i)}
-                        active={i === activeIndex ? active : ""}
+                        to={
+                          id
+                            ? `/${path}?page=${p + 1}&author=${id}`
+                            : `/${path}?page=${p + 1}`
+                        }
+                        onClick={() => onActiveClick(p + 1)}
+                        active={p + 1 === activeIndex ? active : ""}
                         text={p + 1}
                       />
                     </span>
                   )
                 );
               })
-            : [...Array(pages).keys()].map((p, i) => {
+            : [...Array(pages).keys()].map((p) => {
                 return (
                   <span key={p + 1}>
                     <NumButton
-                      to={`/home/page/${p + 1}`}
-                      onClick={() => onActiveClick(i)}
-                      active={i === activeIndex ? active : ""}
+                      to={
+                        id
+                          ? `/${path}?page=${p + 1}&author=${id}`
+                          : `/${path}?page=${p + 1}`
+                      }
+                      onClick={() => onActiveClick(p + 1)}
+                      active={p + 1 === activeIndex ? active : ""}
                       text={p + 1}
                     />
                   </span>

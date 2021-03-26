@@ -19,7 +19,6 @@ const File = ({ onChange, value }) => {
           required
           name="cover"
           onChange={onChange}
-          value={value}
         />
       </label>
     </div>

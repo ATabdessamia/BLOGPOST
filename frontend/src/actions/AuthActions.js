@@ -9,6 +9,7 @@ export const signup = (formData, history) => async (dispatch) => {
 
     dispatch({ type: SUCCESS, payload: data });
     history.push("/signin");
+    toast.success("تم التسجيل بنجاح");
   } catch (error) {
     dispatch({
       type: ERROR,
@@ -31,7 +32,7 @@ export const signin = (formData, history) => async (dispatch) => {
     const { data } = await api.signIn(formData);
 
     dispatch({ type: SUCCESS, payload: data });
-    history.push("/home");
+    history.push("/home?page=1");
   } catch (error) {
     dispatch({
       type: ERROR,

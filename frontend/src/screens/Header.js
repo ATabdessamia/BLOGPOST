@@ -51,18 +51,25 @@ const Header = () => {
             <NavBrand />
             <div className="text-lg text-gray-700 hover:bg-gray-100 bg-gray-200 px-2 rounded mr-5 hidden md:block">
               <NavLink
-                to="/home"
+                to="/home?page=1"
                 text="الصفحة الرئيسية"
                 className="block hover:opacity-75"
               />
             </div>
           </NavItem>
           <NavItem>
-            <NavAvatar onClick={onAvatarHandeler} to="#" auth={auth} />
+            <NavAvatar
+              onClick={onAvatarHandeler}
+              to={`/profile?page=1&author=${auth.data.data._id}`}
+              auth={auth}
+            />
             <div
-              className={`origin-top-right absolute left-14 w-48 sm:left-20 md:left-24 rounded-md shadow-lg py-1 bg-gray-100 ring-1 ring-black ring-opacity-5 ${avatarHidden}`}
+              className={`origin-top-right absolute left-14 w-48 sm:left-20 md:left-24 rounded-md shadow-lg py-1 bg-gray-100 ring-1 z-10 ring-black ring-opacity-5 ${avatarHidden}`}
             >
-              <NavLink to="/profile" text="صفحتي الشخصية" />
+              <NavLink
+                to={`/profile?page=1&author=${auth.data.data._id}`}
+                text="صفحتي الشخصية"
+              />
               <NavLink to="/settings" text="التعديلات" />
               <NavLink
                 to="/"
@@ -75,7 +82,7 @@ const Header = () => {
         <Nav className={`mt-6 ${burgerHidden}  md:hidden`}>
           <NavItem className="px-2 pt-2 pb-3 space-y-1">
             <NavLink
-              to="/home"
+              to="/home?page=1"
               text="الصفحة الرئيسية"
               className="bg-gray-200 text-gray-800 block px-3 py-2 rounded-md text-lg font-medium hover:bg-gray-300 cursor-pointer"
             />

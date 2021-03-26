@@ -48,3 +48,45 @@ export const fetchPost = (id) => async (dispatch) => {
     );
   }
 };
+
+export const fetchPostsBy = (id, page = "") => async (dispatch) => {
+  try {
+    const { data } = await api.fetchPostsBy(id, page);
+
+    dispatch({ type: FETCH_POSTS, payload: data });
+  } catch (error) {
+    console.log(
+      error.response && error.response.data.message
+        ? error.response.data.message
+        : error.message
+    );
+  }
+};
+
+export const deletePost = (id) => async (dispatch) => {
+  try {
+    const { data } = await api.deletePost(id);
+
+    dispatch({ type: DELETE, payload: data });
+  } catch (error) {
+    console.log(
+      error.response && error.response.data.message
+        ? error.response.data.message
+        : error.message
+    );
+  }
+};
+
+export const updatePost = (id, post) => async (dispatch) => {
+  try {
+    const { data } = await api.updatePost(id, post);
+
+    dispatch({ type: UPDATE, payload: data });
+  } catch (error) {
+    console.log(
+      error.response && error.response.data.message
+        ? error.response.data.message
+        : error.message
+    );
+  }
+};

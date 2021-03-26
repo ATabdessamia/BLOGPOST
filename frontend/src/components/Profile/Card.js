@@ -5,10 +5,10 @@ import Star from "./Star";
 import CardBody from "./CardBody";
 import Edite from "./Edite";
 
-const Card = ({ post }) => {
+const Card = ({ post, hidden, setCurrentId }) => {
   return (
     <Link
-      to="post"
+      to={`/${post._id}/${post.slug}`}
       className="rounded-lg shadow-lg bg-gray-100 relative overflow-hidden cursor-pointer transition-transform duration-300 ease-in-out transform hover:scale-105"
     >
       <div className="bg-gray-900">
@@ -19,8 +19,13 @@ const Card = ({ post }) => {
         />
       </div>
       <Star rating={post.rating} />
-      <Edite />
-      <CardBody title={post.title} createdAt={post.createdAt} />
+      <Edite hidden={hidden} id={post._id} setCurrentId={setCurrentId} />
+      <CardBody
+        id={post._id}
+        title={post.title}
+        createdAt={post.createdAt}
+        hidden={hidden}
+      />
     </Link>
   );
 };

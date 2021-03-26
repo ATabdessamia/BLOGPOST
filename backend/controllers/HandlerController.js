@@ -82,3 +82,28 @@ export const getHand = (Model) =>
       },
     });
   });
+
+export const getAllHandBY = (Model) =>
+  catchAsync(async (req, res, next) => {
+    //exec query
+    const features = new APIFeatures(
+      Model.find({ author: { _id: req.params.id } }),
+      req.query
+    )
+      .filter()
+      .sort()
+      .paginate();
+
+    const doc = await features.query;
+    const count = await Model.find({
+      author: { _id: req.params.id },
+    }).countDocuments();
+
+    res.status(200).json({
+      status: "success",
+      data: {
+        data: doc,
+      },
+      pages: Math.ceil(count / features.query.options.limit),
+    });
+  });

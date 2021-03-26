@@ -8,6 +8,7 @@ import {
   updateHand,
   createHand,
   getAllHand,
+  getAllHandBY,
   getHand,
 } from "./HandlerController.js";
 import AppError from "../utilits/AppErrors.js";
@@ -46,6 +47,7 @@ export const resizePostImages = catchAsync(async (req, res, next) => {
   next();
 });
 
+export const getPostsBy = getAllHandBY(Post);
 //fetching specfic data
 export const getPost = getHand(Post);
 //fetch data
