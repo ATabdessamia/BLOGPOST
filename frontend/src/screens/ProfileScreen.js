@@ -26,7 +26,8 @@ const ProfileScreen = ({ location, match }) => {
   if (!pages || !data)
     return (
       <div className="mt-32">
-        <Avatar auth={auth.data.data} /> <Form />
+        <Avatar auth={auth.data.data} />
+        <Form currentId={currentId} setCurrentId={setCurrentId} />
         <Empty />
       </div>
     );

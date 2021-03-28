@@ -17,7 +17,7 @@ const PostHeader = ({ cover, title, createdAt, author }) => {
         <img
           src={`/images/posts/${cover}`}
           alt="article cover"
-          className="block w-full shadow-lg h-40 md:h-full transform scale-95 rotate-6 rounded-lg object-cover"
+          className="block w-full shadow-lg h-40 md:h-full transform scale-95 rotate-6 rounded-lg"
         />
       </div>
       <div className="flex-1 flex justify-between mt-12 sm:mt-0 w-full">

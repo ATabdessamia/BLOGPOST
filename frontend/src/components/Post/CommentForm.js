@@ -1,9 +1,29 @@
-import React from "react";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+
+const initialState = {
+  comment: "",
+};
 
 const CommentForm = () => {
+  const [formData, setFormData] = useState(initialState);
+  const dispatch = useDispatch();
+  const clear = () => {
+    setFormData(initialState);
+  };
+  const onChangeValue = (e) =>
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+
+  const onFormSubmit = (e) => {
+    e.preventDefault();
+    clear();
+  };
   return (
-    <form className="mb-8 mt-2 -mr-2">
+    <form className="mb-8 mt-2 -mr-2" onSubmit={(e) => onFormSubmit(e)}>
       <textarea
+        name="comment"
+        value={formData.comment}
+        onChange={(e) => onChangeValue(e)}
         placeholder="علق هنا..."
         className="border-gray-500 focus:outline-none focus:ring-2 focus:ring-gray-700 p-2 text-base text-gray-500 text-justify font-black  bg-gray-100"
         required
