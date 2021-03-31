@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 
+import { createComment } from "../../actions/CommentActions";
+
 const initialState = {
   comment: "",
 };
 
-const CommentForm = () => {
+const CommentForm = ({ id }) => {
   const [formData, setFormData] = useState(initialState);
   const dispatch = useDispatch();
   const clear = () => {
@@ -14,12 +16,13 @@ const CommentForm = () => {
   const onChangeValue = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
-  const onFormSubmit = (e) => {
+  const onFormSubmit = (e, id) => {
     e.preventDefault();
+    dispatch(createComment(id, formData));
     clear();
   };
   return (
-    <form className="mb-8 mt-2 -mr-2" onSubmit={(e) => onFormSubmit(e)}>
+    <form className="mb-8 mt-2 -mr-2" onSubmit={(e) => onFormSubmit(e, id)}>
       <textarea
         name="comment"
         value={formData.comment}

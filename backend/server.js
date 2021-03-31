@@ -39,8 +39,8 @@ app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 app.use(cors({ origin: "http://localhost:3000", credentials: true }));
 app.use(cookie());
 
-app.use("/posts", postRoutes);
 app.use("/auths", userRoutes);
+app.use("/posts", postRoutes);
 
 // HanderlErrors for routes
 app.all("*", (req, res, next) => {

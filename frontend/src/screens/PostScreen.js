@@ -18,7 +18,6 @@ const PostScreen = ({ match }) => {
   }, [dispatch, id]);
 
   if (!post) return null;
-
   // rating={post.rating}
   return (
     <section className="p-5 mt-10">
@@ -30,8 +29,8 @@ const PostScreen = ({ match }) => {
           author={post.data.data.author}
         />
         <PostBody description={post.data.data.description} />
-        <Comments />
-        <CommentForm />
+        <Comments comments={post.data.data.comments} />
+        <CommentForm id={id} />
       </Post>
     </section>
   );

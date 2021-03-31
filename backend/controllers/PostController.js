@@ -2,6 +2,7 @@ import multer from "multer";
 import sharp from "sharp";
 
 import Post from "../models/PostModel.js";
+import Comment from "../models/CommentModel.js";
 import catchAsync from "../utilits/CatchAsync.js";
 import {
   deleteHand,
@@ -45,6 +46,24 @@ export const resizePostImages = catchAsync(async (req, res, next) => {
     .toFile(`../frontend/public/images/posts/${req.body.cover}`);
 
   next();
+});
+
+export const createNewComment = catchAsync(async (req, res, next) => {
+  const comments = await Comment.create({
+    comment: req.body.comment,
+    user: req.user.id,
+  });
+
+  const doc = await Post.findByIdAndUpdate(req.params.id, {
+    comments: [comments],
+  });
+
+  res.status(201).json({
+    status: "success",
+    data: {
+      data: doc,
+    },
+  });
 });
 
 export const getPostsBy = getAllHandBY(Post);

@@ -1,8 +1,8 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-
 import moment from "moment";
 import "moment/locale/ar-ma";
+
 import { deletePost } from "../../actions/PostActions";
 
 const CardBody = ({ id, title, createdAt, hidden }) => {

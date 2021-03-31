@@ -1,8 +1,12 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 
 import UserComment from "./UserComment";
 
-const Comments = () => {
+const Comments = ({ comments }) => {
+  const dispatch = useDispatch();
+
+  if (!comments.length > 0) return <div>فارغ</div>;
   return (
     <div className="mt-8">
       <h3 className="inline-flex text-3xl text-gray-700 mb-5">
@@ -23,10 +27,10 @@ const Comments = () => {
         <span>التعليقات</span>
       </h3>
       <ul className="max-h-72 overflow-y-scroll comments  divide-y divide-gray-300">
-        <UserComment />
-        <UserComment />
-        <UserComment />
-        <UserComment />
+        {comments &&
+          comments.map((comment) => {
+            return <UserComment Comment={comment} key={comment._id} />;
+          })}
       </ul>
     </div>
   );
