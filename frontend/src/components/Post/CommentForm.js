@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 
-import { createComment } from "../../actions/CommentActions";
-
+import { createComment, fetchComments } from "../../actions/CommentActions";
 const initialState = {
   comment: "",
 };
@@ -20,6 +19,9 @@ const CommentForm = ({ id }) => {
     e.preventDefault();
     dispatch(createComment(id, formData));
     clear();
+    setTimeout(() => {
+      dispatch(fetchComments(id));
+    }, 800);
   };
   return (
     <form className="mb-8 mt-2 -mr-2" onSubmit={(e) => onFormSubmit(e, id)}>

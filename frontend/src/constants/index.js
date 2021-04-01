@@ -8,7 +8,9 @@ export const UPDATE = "UPDATE";
 export const DELETE = "DELETE";
 export const FETCH_POSTS = "FETCH_POSTS";
 export const FETCH_POST = "FETCH_POST";
+
 export const COMMENT = "COMMENT";
+export const COMMENTS = "COMMENTS";
 
 export const USER_LOADING = "USER_LOADING";
 export const USER_SUCCESS = "USER_SUCCESS";

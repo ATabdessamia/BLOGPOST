@@ -90,3 +90,16 @@ export const updatePost = (id, post) => async (dispatch) => {
     );
   }
 };
+
+export const ratingPost = (id, rating) => async (dispatch) => {
+  try {
+    const { data } = await api.ratingPost(id, rating);
+    dispatch({ type: FETCH_POST, payload: data });
+  } catch (error) {
+    console.log(
+      error.response && error.response.data.message
+        ? error.response.data.message
+        : error.message
+    );
+  }
+};

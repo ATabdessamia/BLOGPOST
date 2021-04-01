@@ -1,11 +1,13 @@
 /* eslint-disable import/no-anonymous-default-export */
-import { COMMENT } from "../constants/index";
+import { COMMENT, COMMENTS } from "../constants/index";
 
-export default (posts = { comments: [] }, action) => {
+export default (comments = {}, action) => {
   switch (action.type) {
-    case COMMENT:
+    case COMMENTS:
       return action.payload;
+    case COMMENT:
+      return { ...comments, comment: action.payload };
     default:
-      return posts;
+      return comments;
   }
 };

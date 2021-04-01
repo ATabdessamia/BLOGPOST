@@ -9,7 +9,7 @@ const UserComment = ({ Comment }) => {
   const fullName = user.firstName + " " + user.lastName;
   return (
     <div className="flex items-start py-4 hover:bg-gray-100">
-      <Link to="/profile">
+      <Link to={`/profile?page=1&author=${user._id}`}>
         <img
           src={`/images/users/${user.photo}`}
           alt="avatar"
@@ -19,7 +19,7 @@ const UserComment = ({ Comment }) => {
       <div className="px-5">
         <div className="inline-flex items-center mb-2 -mr-2">
           <Link
-            to="/profile"
+            to={`/profile?page=1&author=${user._id}`}
             className="text-gray-700 font-black text-lg font-kufi ml-2"
           >
             {fullName}

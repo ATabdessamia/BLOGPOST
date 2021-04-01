@@ -26,13 +26,6 @@ const postSchema = mongoose.Schema({
     max: 5,
     default: 0,
   },
-  comments: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      required: true,
-      ref: "Comment",
-    },
-  ],
   createdAt: {
     type: Date,
     default: Date.now,
@@ -51,9 +44,6 @@ postSchema.pre("save", function (next) {
 postSchema.pre(/^find/, function (next) {
   // fill up reference
   this.populate({
-    path: "comments",
-    select: "comment user createdAt",
-  }).populate({
     path: "author",
     select: "firstName lastName photo",
   });

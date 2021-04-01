@@ -1,13 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
 import moment from "moment";
 import "moment/locale/ar-ma";
 
 import Star from "./Star";
+import { ratingPost } from "../../actions/PostActions";
 
-const PostHeader = ({ cover, title, createdAt, author }) => {
+const PostHeader = ({ cover, title, createdAt, author, id, rate }) => {
+  const dispatch = useDispatch();
   moment.locale("ar-ma");
   const fullName = author.firstName + " " + author.lastName;
-  const [rating, setRating] = useState(0);
+  const [rating, setRating] = useState(rate);
   const [hoverRating, setHoverRating] = useState(0);
   const stars = [1, 2, 3, 4, 5];
 
@@ -40,7 +43,11 @@ const PostHeader = ({ cover, title, createdAt, author }) => {
                 rating={hoverRating || rating}
                 onMouseEnter={() => setHoverRating(i + 1)}
                 onMouseLeave={() => setHoverRating(0)}
-                onClick={() => setRating(i + 1)}
+                onClick={(e) => {
+                  setRating(i + 1);
+                  dispatch(ratingPost(id, { rating: rating }));
+                  e.stopPropagation();
+                }}
               />
             );
           })}

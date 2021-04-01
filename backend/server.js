@@ -12,6 +12,7 @@ import connection from "./utilits/DataBase.js";
 import AppError from "./utilits/AppErrors.js";
 import postRoutes from "./routes/PostRoutes.js";
 import userRoutes from "./routes/UserRoutes.js";
+import commentRoutes from "./routes/CommentRoutes.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -41,6 +42,7 @@ app.use(cookie());
 
 app.use("/auths", userRoutes);
 app.use("/posts", postRoutes);
+app.use("/comments", commentRoutes);
 
 // HanderlErrors for routes
 app.all("*", (req, res, next) => {
