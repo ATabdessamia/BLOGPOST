@@ -5,7 +5,8 @@ const API = axios.create({
   baseURL: "http://localhost:5000/",
 });
 
-export const fetchPosts = (page) => API.get(`/posts?page=${page}`);
+export const fetchPosts = (page, sort) =>
+  API.get(`/posts?page=${page}&sort=${sort}`);
 export const fetchPostsBy = (id, page) =>
   API.get(`/posts/profile/${id}?page=${page}`);
 export const createPost = (newPost) => API.post("/posts", newPost);

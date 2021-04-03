@@ -21,9 +21,11 @@ export const createPost = (post) => async (dispatch) => {
   }
 };
 
-export const fetchPosts = (page = "") => async (dispatch) => {
+export const fetchPosts = (page = "", sort = "-createdAt") => async (
+  dispatch
+) => {
   try {
-    const { data } = await api.fetchPosts(page);
+    const { data } = await api.fetchPosts(page, sort);
 
     dispatch({ type: FETCH_POSTS, payload: data });
   } catch (error) {
