@@ -28,3 +28,21 @@ export const getAllComments = catchAsync(async (req, res, next) => {
     },
   });
 });
+
+export const ratePost = catchAsync(async (req, res, next) => {
+  const comment = await Comment.find({
+    post: req.params.id,
+    user: req.user.id,
+  });
+
+  const doc = await Comment.findByIdAndUpdate(comment[0]._id, {
+    rating: req.body.rating,
+  });
+
+  res.status(200).json({
+    status: "success",
+    data: {
+      data: doc,
+    },
+  });
+});

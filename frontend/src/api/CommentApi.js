@@ -8,3 +8,4 @@ const API = axios.create({
 export const createComment = (id, newComment) =>
   API.post(`${id}/post`, newComment);
 export const fetchComments = (id) => API.get(`${id}/post`);
+export const ratingPost = (id, rating) => API.patch(`${id}/rating`, rating);

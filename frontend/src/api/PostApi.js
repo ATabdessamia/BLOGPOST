@@ -14,5 +14,3 @@ export const fetchPost = (id) => API.get(`/posts/${id}`);
 export const updatePost = (id, updatedPost) =>
   API.patch(`/posts/${id}`, updatedPost);
 export const deletePost = (id) => API.delete(`/posts/${id}`);
-export const ratingPost = (id, rating) =>
-  API.patch(`/posts/${id}/rating`, rating);

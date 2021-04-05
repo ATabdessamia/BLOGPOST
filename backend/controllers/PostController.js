@@ -47,20 +47,6 @@ export const resizePostImages = catchAsync(async (req, res, next) => {
   next();
 });
 
-export const ratePost = catchAsync(async (req, res, next) => {
-  console.log(req.body.rating);
-  const doc = await Post.findByIdAndUpdate(req.params.id, {
-    rating: req.body.rating,
-  });
-
-  res.status(200).json({
-    status: "success",
-    data: {
-      data: doc,
-    },
-  });
-});
-
 export const getPostsBy = getAllHandBY(Post);
 //fetching specfic data
 export const getPost = getHand(Post);

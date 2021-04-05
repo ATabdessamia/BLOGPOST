@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import moment from "moment";
 import "moment/locale/ar-ma";
 
 import Star from "./Star";
-import { ratingPost } from "../../actions/PostActions";
+import { ratingPost } from "../../actions/CommentActions";
 
 const PostHeader = ({ cover, title, createdAt, author, id, rate }) => {
   const dispatch = useDispatch();

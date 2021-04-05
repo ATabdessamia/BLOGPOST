@@ -9,7 +9,6 @@ import {
   uploadPostImages,
   resizePostImages,
   getPostsBy,
-  ratePost,
 } from "../controllers/PostController.js";
 import { protect, isLoggedIn } from "../controllers/AuthController.js";
 
@@ -22,8 +21,6 @@ postRouter
   .route("/")
   .get(getAllPosts)
   .post(uploadPostImages, resizePostImages, createNewPost);
-
-postRouter.route("/:id/rating").patch(ratePost);
 
 postRouter
   .route("/:id")
