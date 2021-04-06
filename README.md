@@ -1,5 +1,5 @@
 # BLOGPOST
-![GitHub Logo](/uploads/shot-1.png)
+![GitHub Logo](/uploads/screen-gif.gif)
 use [npm run dev](https://) to see my joke :sunglasses: 
 ## .env file
 NODE_ENV=development
